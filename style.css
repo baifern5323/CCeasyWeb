@@ -1,0 +1,100 @@
+body {
+    font-family: 'Prompt', sans-serif;
+    scroll-behavior: smooth;
+    cursor: none; /* Hide default cursor */
+}
+
+/* Fallback for touch devices - show normal cursor */
+@media (pointer: coarse) {
+    body { cursor: auto; }
+    .cursor-dot, .cursor-outline { display: none !important; }
+}
+
+.gradient-bg {
+    background: linear-gradient(135deg, #F3E8FF 0%, #FFFFFF 100%);
+}
+
+/* Custom Cursor Elements */
+.cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    background-color: #7C3AED;
+    border-radius: 50%;
+    z-index: 9999;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+}
+.cursor-outline {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    border: 2px solid rgba(124, 58, 237, 0.5);
+    border-radius: 50%;
+    z-index: 9998;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s, background-color 0.2s, border-color 0.2s;
+}
+/* Hover State for Cursor */
+body.hovering .cursor-outline {
+    width: 70px;
+    height: 70px;
+    background-color: rgba(124, 58, 237, 0.1);
+    border-color: transparent;
+}
+
+/* 3D Tilt Logic */
+.tilt-card {
+    transition: transform 0.1s ease-out;
+    transform-style: preserve-3d;
+}
+.tilt-content {
+    transform: translateZ(30px); /* Brings content forward */
+}
+
+/* Typewriter Cursor */
+.typing-cursor::after {
+    content: '|';
+    animation: blink 1s step-end infinite;
+    color: #7C3AED;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+.blob {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: linear-gradient(180deg, rgba(124, 58, 237, 0.15) 0%, rgba(124, 58, 237, 0) 100%);
+    border-radius: 50%;
+    z-index: -1;
+    filter: blur(80px);
+}
+.blob-2 {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: linear-gradient(180deg, rgba(239, 68, 68, 0.1) 0%, rgba(239, 68, 68, 0) 100%);
+    border-radius: 50%;
+    z-index: -1;
+    filter: blur(60px);
+}
+
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #f1f1f1; }
+::-webkit-scrollbar-thumb { background: #C4B5FD; border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: #A78BFA; }
+
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.fade-in-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
